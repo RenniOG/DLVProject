@@ -25,3 +25,24 @@ Text
 * importance(event)
 * day(day, start, end)
 * speaker(speaker, event, order, time)
+
+## IDB
+
+### Rules
+
+* 
+
+### Hard Constraints 
+
+* 
+
+### Weak Constraints
+
+* 
+
+
+## Final output predicates in sets for each event
+* scheduled(event, start, end, room)
+* speaker(speaker, start, end, speech)
+
+
