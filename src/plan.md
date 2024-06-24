@@ -37,10 +37,13 @@ Text
 
 * Conferences cannot be scheduled during break periods
 :- scheduled(
+* Speakers cannot be scheduled with overlapping conferences (or speeches?)
 
 ### Weak Constraints
 
-* 
+* Conferences are spread out
+* As few conferences at a time as possible
+
 
 
 ## Final output predicates in sets for each event
