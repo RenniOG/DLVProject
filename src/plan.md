@@ -25,6 +25,7 @@ Text
 * importance(event, importance) 
 * day(day, start, end)
 * speaker(speaker, event, order, time)
+* speech(speaker, speech)
 
 ## IDB
 
