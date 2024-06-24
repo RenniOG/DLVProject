@@ -1,39 +1,40 @@
-speaker(ashutoh_garg).
-speaker(chano_fernandez).
-speaker(mandell_crawley).
-speaker(simona_spelman).
-speaker(amber_grewal).
-speaker(jaime_nielsen).
-speaker(stacia_garr).
-speaker(victoria_myers).
-speaker(jennifer_sharp).
-speaker(madeline_laurano).
-speaker(luis_nino).
-speaker(jason_cerrato).
-speaker(michelle_fichtl).
-speaker(michelle_fichtl).
-speaker(stacy_gramza).
-speaker(david_francis).
-speaker(deonne_ramsey).
-speaker(rebecca_warren).
-speaker(amanda_sorrento).
-speaker(lligia_zamora).
-speaker(michael_bush).
-speaker(gabriel_maldonado).
-speaker(keith_sonderling).
-speaker(scott_sunmer).
-speaker(josh_bersin).
-speaker(sachit_kamat).
-speaker(scott_melvin).
-speaker(chris_white).
-speaker(dan_hopkins).
-speaker(jennifer_galbraith).
-speaker(liz_wamai).
-speaker(sona_manzo).
-speaker(keith_mccook).
-speaker(jackie_morgan).
-speaker(bill_pelster).
-speaker(david_oconnor).
-speaker(jen_mark).
-speaker(betsy_summers).
-speaker(ligia_zamora).
+% speaker(name, event_id)
+speaker(ashutoh_garg, 1).
+speaker(chano_fernandez, 1).
+speaker(chano_fernandez, 2).
+speaker(mandell_crawley, 1).
+speaker(simona_spelman, 2).
+speaker(amber_grewal, 3).
+speaker(jaime_nielsen, 3).
+speaker(stacia_garr, 3).
+speaker(victoria_myers, 4).
+speaker(jennifer_sharp, 4).
+speaker(madeline_laurano, 4).
+speaker(luis_nino, 5).
+speaker(jason_cerrato, 5).
+speaker(michelle_fichtl, 6).
+speaker(stacy_gramza, 6).
+speaker(david_francis, 6).
+speaker(deonne_ramsey, 7).
+speaker(rebecca_warren, 7).
+speaker(amanda_sorrento, 8).
+speaker(lligia_zamora, 8).
+speaker(michael_bush, 9).
+speaker(gabriel_maldonado, 10).
+speaker(keith_sonderling, 10).
+speaker(scott_sunmer, 10).
+speaker(josh_bersin, 11).
+speaker(sachit_kamat, 12).
+speaker(scott_melvin, 13).
+speaker(chris_white, 13).
+speaker(dan_hopkins, 13).
+speaker(jennifer_galbraith, 14).
+speaker(liz_wamai, 14).
+speaker(sona_manzo, 14).
+speaker(keith_mccook, 15).
+speaker(jackie_morgan, 15).
+speaker(bill_pelster, 15).
+speaker(david_oconnor, 16).
+speaker(jen_mark, 16).
+speaker(betsy_summers, 17).
+speaker(ligia_zamora, 17).
