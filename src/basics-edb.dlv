@@ -5,5 +5,5 @@ day(1..2).
 time(9..16).
 
 % rooms
-room(brilliance).
-room(clarity).
+room(brilliance, 516).
+room(clarity, 96).
