@@ -44,7 +44,7 @@ Text
 
 
 ## Final output predicates in sets for each event
-* scheduled(event, start, time, room)
+* scheduled(event, start, length, room)
 * speaker(speaker, start, end, speech)
 * break(start, end, room).
 
