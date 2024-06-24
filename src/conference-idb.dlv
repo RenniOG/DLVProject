@@ -3,13 +3,13 @@
 
 % if an event is large enough, it is a required event and everyone goes
 % these events can be the only event at the time.
-% required_event(E) :- event(_, E, _, 432).
+required_event(E) :- event(_, E, _, 432).
 
-% % can't have more than one event during an event if there is a required event
-% :- assign(E, D, T, _, _), assign(E1, D, T, _, _), required_event(E). 
+% can't have more than one event during an event if there is a required event
+:- assign(E, D, T, _, _), assign(E1, D, T, _, _), required_event(E), E != E1. 
 
-% % speakers must be speaking in only the event(s) they are assigned to 
-% :- assign(E, _, S, T, _), event(I, E, _, _), speaker(S, I1), I != I1.
+% speakers must be speaking in only the event(s) they are assigned to 
+% :- assign(E, _, T, , _), event(I, E, _, _), speaker(S, I1), I != I1.
 
 % can't have two events in the same room at the same time
 :- assign(E1, D, T, _, R), assign(E2, D, T, _, R), E1 != E2.
@@ -27,4 +27,11 @@
 % minimize the amount of events that share a time
 :~ assign(E1, D, T, _, _), assign(E2, D, T, _, _). [1@2]
 
+% don't want any events during lunch (12)
+:~ assign(_, _, 12, _, _). [1@1]
+
+% no required events during lunch
+:- assign(E, _, 12, _, _), required_event(E).
+
 #show assign/5.
+% #show required_event/1.
