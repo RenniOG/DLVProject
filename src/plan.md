@@ -43,7 +43,7 @@ Text
 
 * Conferences are spread out
 * As few conferences at a time as possible
-
+* 
 
 
 ## Final output predicates in sets for each event
