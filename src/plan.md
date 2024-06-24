@@ -35,7 +35,8 @@ Text
 
 ### Hard Constraints 
 
-* 
+* Conferences cannot be scheduled during break periods
+:- scheduled(
 
 ### Weak Constraints
 
@@ -43,7 +44,7 @@ Text
 
 
 ## Final output predicates in sets for each event
-* scheduled(event, start, end, room)
+* scheduled(event, start, time, room)
 * speaker(speaker, start, end, speech)
 * break(start, end, room).
 
