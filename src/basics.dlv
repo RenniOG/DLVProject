@@ -1,0 +1,9 @@
+% declare the four days for the conference
+day(1..2).
+
+% starts at 9am and goes to 4pm .
+time(9..16).
+
+% rooms
+room(brilliance).
+room(clarity).
