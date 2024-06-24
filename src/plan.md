@@ -9,7 +9,7 @@ Text
 ### Events
 
 * event(event_name, event_time)
-* expected(event_name)
+* expected(event_name) ???
 * 
 
 
@@ -22,7 +22,7 @@ Text
 ### Deduced/Misc
 
 * breaks(day, starts, time)
-* importance(event)
+* importance(event, importance) 
 * day(day, start, end)
 * speaker(speaker, event, order, time)
 
