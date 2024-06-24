@@ -1,4 +1,6 @@
 % assign(event, day, time, speaker, room)
-{assign(E, D, T, S, R) : day(D), time(T), speaker(S, _), room(R, _)} :- event(_, E, _).
+{assign(E, D, T, S, R) : day(D), time(T), speaker(S, _), room(R, _)} = 1 :- event(_, E, _).
+
+
 
 #show assign/5.
