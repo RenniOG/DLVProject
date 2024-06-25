@@ -74,7 +74,7 @@ overlap(E, E1) :- schedule(E, D, S, _, _, _), schedule(E1, D, S1, _, _, _), E1 !
 :~ Min = #min{E : schedule(_, _, _, E, _, _)}, Max = #max{E : schedule(_, _, _, E, _, _)}, D = Max - Min. [D@2]
 
 % minimize the empty seats in a room
-:~ schedule(E, _, _, _, _, R), room(R, C), event(E, _, _, A), D = C - A. [D@3]
+:~ schedule(E, _, _, _, _, R), room(R, C), event(E, _, _, A), D = C - A. [D@3] 
 
 
 % #show keynote/1.
