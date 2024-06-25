@@ -1,37 +1,61 @@
-% assign(event, day, time, speaker, room)
-{assign(E, D, T, S, R) : day(D), time(T), speaker(S, _), room(R, _)} = 1 :- event(_, E, _, _).
+% % assign(event, day, time, speaker, room)
+% {assign(E, D, T, S, R) : day(D), time(T), speaker(S, _), room(R, _)} = 1 :- event(_, E, _, _).
 
-% if an event is large enough, it is a required event and everyone goes
-% these events can be the only event at the time.
-required_event(E) :- event(_, E, _, 432).
+% % if an event is large enough, it is a required event and everyone goes
+% % these events can be the only event at the time.
+% required_event(E) :- event(_, E, _, 432).
 
-% can't have more than one event during an event if there is a required event
-:- assign(E, D, T, _, _), assign(E1, D, T, _, _), required_event(E), E != E1. 
+% % can't have more than one event during an event if there is a required event
+% :- assign(E, D, T, _, _), assign(E1, D, T, _, _), required_event(E), E != E1. 
 
-% speakers must be speaking in only the event(s) they are assigned to 
-% :- assign(E, _, T, , _), event(I, E, _, _), speaker(S, I1), I != I1.
+% % speakers must be speaking in only the event(s) they are assigned to 
+% % :- assign(E, _, _, S, _), event(I, E, _, _), speaker(S, I1), I != I1.
 
-% can't have two events in the same room at the same time
-:- assign(E1, D, T, _, R), assign(E2, D, T, _, R), E1 != E2.
+% % can't have two events in the same room at the same time
+% :- assign(E1, D, T, _, R), assign(E2, D, T, _, R), E1 != E2.
 
-% can't have the same speaker double booked
-:- assign(_, D, T, S1, _), assign(_, D, T, S2, _), S1 != S2.
+% % can't have the same speaker double booked
+% :- assign(_, D, T, S1, _), assign(_, D, T, S2, _), S1 != S2.
 
-% cannot have a room assigned to an event if the capacity of the room isn't big enough
-:- assign(E, _, _, _, R), event(_, E, _, A), room(R, C), C < A.
+% % cannot have a room assigned to an event if the capacity of the room isn't big enough
+% :- assign(E, _, _, _, R), event(_, E, _, A), room(R, C), C < A.
 
-% minimize the difference between room capacity and attendance 
-% avoid using large rooms for small sessions
-:~ assign(E, _, _, _, R), event(_, E, _, A), room(R, C), D = C - A, D > 0. [D@1]
+% % minimize the difference between room capacity and attendance 
+% % avoid using large rooms for small sessions
+% :~ assign(E, _, _, _, R), event(_, E, _, A), room(R, C), D = C - A, D > 0. [D@1]
 
-% minimize the amount of events that share a time
-:~ assign(E1, D, T, _, _), assign(E2, D, T, _, _). [1@2]
+% % minimize the amount of events that share a time
+% :~ assign(E1, D, T, _, _), assign(E2, D, T, _, _). [1@2]
 
-% don't want any events during lunch (12)
-:~ assign(_, _, 12, _, _). [1@1]
+% % don't want any events during lunch (12)
+% :~ assign(_, _, 12, _, _). [1@1]
 
-% no required events during lunch
-:- assign(E, _, 12, _, _), required_event(E).
+% % no required events during lunch
+% :- assign(E, _, 12, _, _), required_event(E).
 
-#show assign/5.
-% #show required_event/1.
+% #show assign/5.
+% % #show required_event/1.
+
+
+% testing with new time predicate
+
+{schedule(E, D, Start, End, S, R): day(D), time(Start), End = Start + L, speaker(S, _), room(R, _)} = 1 :- event(E, _, L, _).
+
+% cannot have any events during breaks
+:- break(Start, End, _), schedule(_, _, EventStart, EventEnd, _, _), EventStart < Start, EventEnd > Start.
+
+% can't double book rooms
+% can't have two events starting at the same time
+:- schedule(E, D, S, _, _, R), schedule(E1, D, S, _, _, R), E != E1.
+:- schedule(E1, D, S1, End1, _, R), schedule(E2, D, S2, End2, _, R), E1 != E2, S1 > S2, S1 < End2.
+% :- schedule(E1, D, S1, E1, _, R), schedule(E2, D, S2, E2, _, R), E1 != E2, S2 < E1, E2 > E1.
+% :- schedule(E1, D, S1, E1, _, R), schedule(E2, D, S2, E2, _, R), E1 != E2, S2 > S1, S2 < E1.
+
+% add a fifteen minute time block after each event in each room
+:- schedule(_, D, _, E, _, R), schedule(_, D, S, _, _, R), S = E.
+
+% speaker must be scheduled to the correct event
+:- schedule(E, _, _, _, S, _), not speaker(S, E).
+
+
+#show schedule/6.

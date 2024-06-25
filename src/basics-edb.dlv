@@ -2,7 +2,14 @@
 day(1..2).
 
 % starts at 9am and goes to 4pm .
-time(9..16).
+% time(9..16).
+time(36..64).
+
+% define breaks
+% break(start, length, name)
+break(48, 52, lunch).
+break(40, 41, coffee).
+break(56, 57, coffee).
 
 % rooms
 room(brilliance, 516).
