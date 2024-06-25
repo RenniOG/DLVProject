@@ -47,9 +47,9 @@
 % can't double book rooms
 % can't have two events starting at the same time
 :- schedule(E, D, S, _, _, R), schedule(E1, D, S, _, _, R), E != E1.
-:- schedule(E1, D, S1, End1, _, R), schedule(E2, D, S2, End2, _, R), E1 != E2, S1 > S2, S1 < End2.
-% :- schedule(E1, D, S1, E1, _, R), schedule(E2, D, S2, E2, _, R), E1 != E2, S2 < E1, E2 > E1.
-% :- schedule(E1, D, S1, E1, _, R), schedule(E2, D, S2, E2, _, R), E1 != E2, S2 > S1, S2 < E1.
+
+% cannot have overlapping events in the same
+:- schedule(E1, D, S1, End1, _, R), schedule(E2, D, S2, End2, _, R), overlap(E1, E2).
 
 % add a fifteen minute time block after each event in each room
 :- schedule(_, D, _, E, _, R), schedule(_, D, S, _, _, R), S = E.
@@ -57,5 +57,24 @@
 % speaker must be scheduled to the correct event
 :- schedule(E, _, _, _, S, _), not speaker(S, E).
 
+% room must have enough capacity for the event
+:- schedule(E, _, _, _, _, R), room(R, C), event(R, _, _, A), A > C.
 
+% cannot be other events during a keynote event
+keynote(E) :- event(E, _, _, 432).
+:- schedule(E, D, _, _, _, _), schedule(E1, _, _, _, _, _), overlap(E, E1), keynote(E).
+
+% overlap predicate
+% overlap if an event starts during the time of another
+overlap(E, E1) :- schedule(E, D, S1, End1, _, _), schedule(E1, D, S2, End2, _, _), E1 != E, S1 > S2, S1 < End2.
+% overlap if an event ends during the time of an event
+overlap(E, E1) :- schedule(E, D, S1, End1, _, _), schedule(E1, D, S2, End2, _, _), E1 != E, S2 < End1, End2 > End1.
+% overlap if two events start at the same time
+overlap(E, E1) :- schedule(E, D, S, _, _, _), schedule(E1, D, S1, _, _, _), E1 != E, S = S1.
+
+% minimize overlap
+:~ overlap(E, E1). [1@1]
+
+% #show keynote/1.
 #show schedule/6.
+#show overlap/2.
