@@ -1,0 +1,81 @@
+% choice rule
+{schedule(E, D, Start, End, S, R): day(D), time(Start), End = Start + L, speaker(S, _), room(R, _)} = 1 :- event(E, _, L, _).
+
+%%%%%%%%%%%%%%%    general rules    %%%%%%%%%%%%%% 
+
+% cannot have the same speaker back to back
+:- schedule(_, D, S, _, Speaker, R), schedule(_, D, _, E, Speaker, R), E = S.
+
+% add a fifteen minute time block after each event in each room
+:- schedule(_, D, _, E, _, R), schedule(_, D, S, _, _, R), S = E.
+
+% speaker must be scheduled to the correct event
+:- schedule(E, _, _, _, S, _), not speaker(S, E).
+
+% room must have enough capacity for the event
+:- schedule(E, _, _, _, _, R), room(R, C), event(E, _, _, A), A > C.
+
+% cannot be other events during a keynote event
+:- schedule(E, D, _, _, _, _), schedule(E1, _, _, _, _, _), overlap(E, E1), event(E, _, _, 432).
+
+
+%%%%%%%%%%%%%%  breaktime constraints   %%%%%%%%%%%%%%
+
+% cannot have an event start before a break and end after it
+:- break(Start, End, _), schedule(_, _, EventStart, EventEnd, _, _), EventStart < Start, EventEnd > Start.
+
+% cannot have an event start after a break starts and before it ends
+:- break(Start, End, _), schedule(_, _, EventStart, EventEnd, _, _), EventStart > Start, EventStart < End.
+
+% cannot have a break at the same start time as an event
+:- break(S, _, _), schedule(_, _, S, _, _, _).
+
+
+%%%%%%%%%%%%%%     overlap predicate and constraints    %%%%%%%%%%%%%% 
+
+% overlap if an event starts during the time of another
+overlap(E, E1) :- schedule(E, D, S1, End1, _, _), schedule(E1, D, S2, End2, _, _), E1 != E, S1 > S2, S1 < End2.
+
+% overlap if an event ends during the time of an event
+overlap(E, E1) :- schedule(E, D, S1, End1, _, _), schedule(E1, D, S2, End2, _, _), E1 != E, S2 < End1, End2 > End1.
+
+% overlap if two events start at the same time
+overlap(E, E1) :- schedule(E, D, S, _, _, _), schedule(E1, D, S1, _, _, _), E1 != E, S = S1.
+
+% cannot have overlapping events in the same room
+:- schedule(E1, D, S1, End1, _, R), schedule(E2, D, S2, End2, _, R), overlap(E1, E2).
+
+
+
+%%%%%%%%%%%%%%      weak constraints    %%%%%%%%%%%%%% 
+
+% minimize overlap
+:~ overlap(E, E1). [1@7]
+
+% minimize starting time
+:~ schedule(_, _, S, _, _, _). [S@6]
+
+% minimize the total time of a day
+:~ Min = #min{E : schedule(_, _, _, E, _, _)}, Max = #max{E : schedule(_, _, _, E, _, _)}, D = Max - Min. [D@5]
+
+% minimize the empty seats in a room
+:~ schedule(E, _, _, _, _, R), room(R, C), event(E, _, _, A), D = C - A. [D@4] 
+
+% prioritize events to start on the hour
+:~ schedule(E, _, S, _, _, _), &mod(S,4;0). [-E@3]
+
+hour(T, H) :- time(T), H = T/ 4.
+
+minute(T, M) :- time(T), hour(T, H), M = (T - (H * 4)) * 15.
+
+times(T, Time) :- time(T), minute(T, M), hour(T, H), Time = H * 100 + M.
+
+% display predicate
+scheduledEvent(Event, D, ST, ET, Speaker, R) :- schedule(EventID, D, S, E, Speaker, R), event(EventID, Event, _, _),
+times(S, ST), times(E, ET).
+
+scheduledEvent(E, D, ST, ED, none, lobby) :- break(S, End, E), day(D), times(S, ST), times(End, ED). 
+
+% #show schedule/6.
+#show scheduledEvent/6.
+
