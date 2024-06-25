@@ -44,10 +44,6 @@
 % cannot have any events during breaks
 :- break(Start, End, _), schedule(_, _, EventStart, EventEnd, _, _), EventStart < Start, EventEnd > Start.
 
-% can't double book rooms
-% can't have two events starting at the same time
-:- schedule(E, D, S, _, _, R), schedule(E1, D, S, _, _, R), E != E1.
-
 % cannot have overlapping events in the same
 :- schedule(E1, D, S1, End1, _, R), schedule(E2, D, S2, End2, _, R), overlap(E1, E2).
 
@@ -61,8 +57,7 @@
 :- schedule(E, _, _, _, _, R), room(R, C), event(R, _, _, A), A > C.
 
 % cannot be other events during a keynote event
-keynote(E) :- event(E, _, _, 432).
-:- schedule(E, D, _, _, _, _), schedule(E1, _, _, _, _, _), overlap(E, E1), keynote(E).
+:- schedule(E, D, _, _, _, _), schedule(E1, _, _, _, _, _), overlap(E, E1), event(E, _, _, 432).
 
 % overlap predicate
 % overlap if an event starts during the time of another
@@ -75,6 +70,14 @@ overlap(E, E1) :- schedule(E, D, S, _, _, _), schedule(E1, D, S1, _, _, _), E1 !
 % minimize overlap
 :~ overlap(E, E1). [1@1]
 
+% minimize the total time of a day
+:~ Min = #min{E : schedule(_, _, _, E, _, _)}, Max = #max{E : schedule(_, _, _, E, _, _)}, D = Max - Min. [D@2]
+
+% minimize the empty seats in a room
+:~ schedule(E, _, _, _, _, R), room(R, C), event(E, _, _, A), D = C - A. [D@3]
+
+
 % #show keynote/1.
 #show schedule/6.
-#show overlap/2.
+% #show overlap/2.
+

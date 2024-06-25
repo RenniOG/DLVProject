@@ -15,10 +15,10 @@ break(56, 57, coffee).
 room(brilliance, 516).
 room(clarity, 96).
 room(courtyard, 150).
-% room(vision, 94).
-% room(inspiration, 64).
-% room(influence, 14).
-% room(connectivity, 95).
-% room(prefunction, 50).
-% room(terrace, 20).
-% room(forye, 200).
+room(vision, 94).
+room(inspiration, 64).
+room(influence, 14).
+room(connectivity, 95).
+room(prefunction, 50).
+room(terrace, 20).
+room(forye, 200).
