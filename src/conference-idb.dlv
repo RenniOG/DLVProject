@@ -64,10 +64,10 @@ overlap(E, E1) :- schedule(E, D, S, _, _, _), schedule(E1, D, S1, _, _, _), E1 !
 % prioritize events to start on the hour
 :~ schedule(E, _, S, _, _, _), &mod(S,4;0). [-E@3]
 
+% display predicate
+scheduledEvent(Event, D, S, E, Speaker, R) :- schedule(EventID, D, S, E, Speaker, R), event(EventID, Event, _, _).
+scheduledEvent(E, D, S, End, none, lobby) :- break(S, End, E), day(D). 
 
-
-#show schedule/6.
-% #show capacityDiff/2.
-% #show overlap/2.
-#show onHour/1.
+% #show schedule/6.
+#show scheduledEvent/6.
 

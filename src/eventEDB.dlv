@@ -6,19 +6,19 @@ event(3, how_to_embrace_executive_priorities_with_aI, 4, 47).
 event(4, transforming_the_way_you_think_about_talent_and_aI, 4, 129).
 event(5, how_to_unlock_skills_to_build_the_talent_centered_org_of_the_future, 4, 230).
 event(6, how_gen_aI_will_impact_the_entire_talent_experience, 4, 278).
-event(7, driving_aI_powered_personalized_career_paths_from_start_to_success, 4, 94).
-event(8, how_this_pharmaceutical_leader_accelerated_its_skills_based_transformation_with_talent_intelligence, 4, 43).
+% event(7, driving_aI_powered_personalized_career_paths_from_start_to_success, 4, 94).
+% event(8, how_this_pharmaceutical_leader_accelerated_its_skills_based_transformation_with_talent_intelligence, 4, 43).
 event(9, becoming_great_with_aI, 4, 432).
-event(10, navigating_global_policies_and_regulations, 4, 12).
+% event(10, navigating_global_policies_and_regulations, 4, 12).
 
 % % Day 2
-% event(11, talent_intelligence_whats_next, 4, 432).
+event(11, talent_intelligence_whats_next, 4, 432).
 % event(12, the_future_of_talent_centered_aI, 4, 93).
 % event(13, how_governments_are_using_responsible_aI_for_workforce_development, 4, 242).
 % event(14, putting_skills_at_the_center_of_the_employee_journey, 4, 314).
 % event(15, best_practices_to_prepare_your_org_for_aI_success, 4, 83).
 % event(16, accelerate_sourcing_and_hiring_with_AI, 4, 196).
-% event(17, skills_AI_and_agility_Realizing_your_talent_outcomes_in_2024, 4, 432).
+event(17, skills_AI_and_agility_Realizing_your_talent_outcomes_in_2024, 4, 432).
 
 
 % keynote 1, 2, 9, 11, 17
