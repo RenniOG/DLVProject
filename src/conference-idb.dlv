@@ -64,9 +64,17 @@ overlap(E, E1) :- schedule(E, D, S, _, _, _), schedule(E1, D, S1, _, _, _), E1 !
 % prioritize events to start on the hour
 :~ schedule(E, _, S, _, _, _), &mod(S,4;0). [-E@3]
 
+hour(T, H) :- time(T), H = T/ 4.
+
+minute(T, M) :- time(T), hour(T, H), M = (T - (H * 4)) * 15.
+
+times(T, Time) :- time(T), minute(T, M), hour(T, H), Time = H * 100 + M.
+
 % display predicate
-scheduledEvent(Event, D, S, E, Speaker, R) :- schedule(EventID, D, S, E, Speaker, R), event(EventID, Event, _, _).
-scheduledEvent(E, D, S, End, none, lobby) :- break(S, End, E), day(D). 
+scheduledEvent(Event, D, ST, ET, Speaker, R) :- schedule(EventID, D, S, E, Speaker, R), event(EventID, Event, _, _),
+times(S, ST), times(E, ET).
+
+scheduledEvent(E, D, ST, ED, none, lobby) :- break(S, End, E), day(D), times(S, ST), times(End, ED). 
 
 % #show schedule/6.
 #show scheduledEvent/6.
