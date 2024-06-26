@@ -12,13 +12,13 @@ event(9, becoming_great_with_aI, 4, 432).
 event(10, navigating_global_policies_and_regulations, 4, 12).
 
 % % Day 2
-event(11, talent_intelligence_whats_next, 4, 432).
-event(12, the_future_of_talent_centered_aI, 4, 93).
-event(13, how_governments_are_using_responsible_aI_for_workforce_development, 4, 39).
-event(14, putting_skills_at_the_center_of_the_employee_journey, 4, 100).
-event(15, best_practices_to_prepare_your_org_for_aI_success, 4, 83).
-event(16, accelerate_sourcing_and_hiring_with_AI, 4, 196).
-event(17, skills_AI_and_agility_Realizing_your_talent_outcomes_in_2024, 4, 432).
+% event(11, talent_intelligence_whats_next, 4, 432).
+% event(12, the_future_of_talent_centered_aI, 4, 93).
+% event(13, how_governments_are_using_responsible_aI_for_workforce_development, 4, 39).
+% event(14, putting_skills_at_the_center_of_the_employee_journey, 4, 100).
+% event(15, best_practices_to_prepare_your_org_for_aI_success, 4, 83).
+% event(16, accelerate_sourcing_and_hiring_with_AI, 4, 196).
+% event(17, skills_AI_and_agility_Realizing_your_talent_outcomes_in_2024, 4, 432).
 
 
 % keynote 1, 2, 9, 11, 17
