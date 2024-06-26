@@ -64,6 +64,8 @@ overlap(E, E1) :- schedule(E, D, S, _, _, _), schedule(E1, D, S1, _, _, _), E1 !
 % prioritize events to start on the hour
 :~ schedule(E, _, S, _, _, _), &mod(S,4;0). [-E@3]
 
+%%%%%%%  Time Conversion %%%%%%%
+
 hour(T, H) :- time(T), H = T/ 4.
 
 minute(T, M) :- time(T), hour(T, H), M = (T - (H * 4)) * 15.
