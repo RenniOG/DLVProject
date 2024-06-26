@@ -1,5 +1,5 @@
 % declare the four days for the conference
-day(1..2).
+day(1).
 
 % starts at 9am and goes to 4pm .
 % time(9..16).
